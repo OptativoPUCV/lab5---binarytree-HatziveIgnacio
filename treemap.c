@@ -48,7 +48,7 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) //lisgto
 }
 
 
-void insertTreeMap(TreeMap * tree, void* key, void * value) 
+void insertTreeMap(TreeMap * tree, void* key, void * value) //listo
 {
   TreeNode *tempNode = tree->root; // primer nodo, raiz
   TreeNode *nuevoNodo = createTreeNode(key,value);
@@ -90,7 +90,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value)
   }
 }
 
-TreeNode * minimum(TreeNode * x)
+TreeNode * minimum(TreeNode * x) //listo?
 {
   while( x->left != NULL)
   {
@@ -146,7 +146,9 @@ Pair * upperBound(TreeMap * tree, void* key) {
 }
 
 Pair * firstTreeMap(TreeMap * tree) {
-    return NULL;
+  TreeNode *min = minimum(tree->root);
+  tree->current = min;
+  return min->pair;
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
