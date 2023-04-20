@@ -225,5 +225,5 @@ Pair * nextTreeMap(TreeMap * tree)
     tree->current = min_node;
     return min_node->pair;
   }
-  return ;
+  return NULL;
 }
