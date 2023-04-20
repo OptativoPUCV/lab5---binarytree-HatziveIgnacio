@@ -134,6 +134,7 @@ void removeNode(TreeMap * tree, TreeNode* node)
     {
       hijo->parent = NULL; // no existe padre
       tree->root = hijo;
+      return;
     }
     // cambio de padre
     hijo->parent = node->parent;
