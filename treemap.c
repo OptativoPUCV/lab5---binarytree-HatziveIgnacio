@@ -211,16 +211,19 @@ Pair * firstTreeMap(TreeMap * tree) // listo
 }
 
 
-Pair * nextTreeMap(TreeMap * tree) {
-  if (tree->current->right != NULL) {
+Pair * nextTreeMap(TreeMap * tree)
+{
+  if (tree->current->right != NULL) 
+  {
         TreeNode* min_node = minimum(tree->current->right);
         tree->current = min_node;
         return min_node->pair;
-    }
+  }
   else if ((tree->current->left != NULL))
   {
     TreeNode* min_node = minimum(tree->current->left);
-        tree->current = min_node;
-        return min_node->pair;
+    tree->current = min_node;
+    return min_node->pair;
   }
+  return ;
 }
