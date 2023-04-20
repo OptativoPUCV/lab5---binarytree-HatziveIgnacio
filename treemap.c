@@ -100,8 +100,49 @@ TreeNode * minimum(TreeNode * x) //listo?
 }
 
 
-void removeNode(TreeMap * tree, TreeNode* node) {
-
+void removeNode(TreeMap * tree, TreeNode* node) 
+{
+  if( node->left == NULL && node->right == NULL) // caso 1, sin hijos
+  {
+    if( node->parent->left == node) // en la izq
+    {
+      node->parent->left = NULL;
+    }
+    else if( node->parent->right == node) // o derecha
+    {
+      node->parent->right = NULL;
+    }
+    return;
+  }
+  /////////////////
+  
+  /////////////////
+  if( node->left == NULL || node->right == NULL) // Caso 2, con un hijo
+  {
+    //
+    TreeNode *hijo;
+    if(node->left == NULL) // Aux para ver cual debe ser, el izq o derecho
+    {
+      hijo =  node->left;
+    }
+    else
+    {
+      hijo =  node->right;
+    }
+    // cambio de padre
+    hijo->parent = node->parent;
+    // se ve en que posicion del padre debe estar
+    if( hijo == node->parent->left)
+    {
+      node->parent->left = hijo;
+    }
+    else
+    {
+      node->parent->right = hijo;
+    }
+    return;
+  }
+  /////////////////
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
@@ -145,7 +186,8 @@ Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
 }
 
-Pair * firstTreeMap(TreeMap * tree) {
+Pair * firstTreeMap(TreeMap * tree) // listo
+{
   TreeNode *min = minimum(tree->root);
   tree->current = min;
   return min->pair;
