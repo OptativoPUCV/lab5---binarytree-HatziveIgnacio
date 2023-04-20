@@ -36,7 +36,7 @@ TreeNode * createTreeNode(void* key, void * value) {
     return new;
 }
 
-TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) 
+TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) //lisgto
 {
   TreeMap *map = malloc(sizeof(TreeMap));
   if(map==NULL) return NULL;
@@ -74,7 +74,27 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 
 
-Pair * searchTreeMap(TreeMap * tree, void* key) {
+Pair * searchTreeMap(TreeMap * tree, void* key) 
+{
+  TreeNode *tempNode = tree->root;
+
+  while(tempNode != NULL)
+  { 
+    if(is_equal(tree, key, tempNode->pair->key) ) // se compara y si es igual se reemplaza
+    {
+      tree->current = tempNode;
+      return tree->current->pair;
+    }
+    else if(tree->lower_than(key, tempNode->pair->key) ) // si retorna verdadero esta a la izq
+    {
+      tempNode = tempNode->left; 
+    }
+    else // si no a la derehca
+    {
+      tempNode = tempNode->right;
+    }
+
+  }
     return NULL;
 }
 
