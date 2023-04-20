@@ -90,6 +90,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) //listo
   }
 }
 
+
 TreeNode * minimum(TreeNode * x) //listo?
 {
   while( x->left != NULL)
@@ -100,7 +101,7 @@ TreeNode * minimum(TreeNode * x) //listo?
 }
 
 
-void removeNode(TreeMap * tree, TreeNode* node) 
+void removeNode(TreeMap * tree, TreeNode* node) // listo
 {
   if( node->left == NULL && node->right == NULL) // caso 1, sin hijos // listo
   {
@@ -153,14 +154,12 @@ void removeNode(TreeMap * tree, TreeNode* node)
   }
   /////////////////
 
-  ///////////////// Caso 3
-  
+  ///////////////// Caso 3, dos hijos, ver el minimo de la rama derecha y reemplazar
   TreeNode* minomoDerecho = minimum(node->right);
   node->pair->key = minomoDerecho->pair->key;
   node->pair->value = minomoDerecho->pair->value;
   removeNode(tree, minomoDerecho);
 
-  
   /////////////////
 }
 
@@ -172,8 +171,6 @@ void eraseTreeMap(TreeMap * tree, void* key){
     removeNode(tree, node);
 
 }
-
-
 
 
 Pair * searchTreeMap(TreeMap * tree, void* key) // listo
@@ -205,6 +202,7 @@ Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
 }
 
+
 Pair * firstTreeMap(TreeMap * tree) // listo
 {
   TreeNode *min = minimum(tree->root);
@@ -212,6 +210,12 @@ Pair * firstTreeMap(TreeMap * tree) // listo
   return min->pair;
 }
 
+
 Pair * nextTreeMap(TreeMap * tree) {
+  if (tree->current->right != NULL) {
+        TreeNode* min_node = minimum(tree->current->right);
+        tree->current = min_node;
+        return min_node->pair;
+    }
     return NULL;
 }
