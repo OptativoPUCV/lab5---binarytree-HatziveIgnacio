@@ -136,18 +136,21 @@ void removeNode(TreeMap * tree, TreeNode* node)
       tree->root = hijo;
       return;
     }
-    // cambio de padre
-    hijo->parent = node->parent;
-    // se ve en que posicion del padre debe estar
-    if( hijo == node->parent->left)
-    {
-      node->parent->left = hijo;
+    else{
+      
+      // cambio de padre
+      hijo->parent = node->parent;
+      // se ve en que posicion del padre debe estar
+      if( hijo == node->parent->left)
+      {
+        node->parent->left = hijo;
+      }
+      else
+      {
+        node->parent->right = hijo;
+      }
+      return;
     }
-    else
-    {
-      node->parent->right = hijo;
-    }
-    return;
   }
   /////////////////
 }
