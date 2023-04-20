@@ -123,11 +123,11 @@ void removeNode(TreeMap * tree, TreeNode* node)
     TreeNode *hijo;
     if(node->left == NULL) // Aux para ver cual debe ser, el izq o derecho
     {
-      hijo =  node->right;
+      hijo =  node->right; // si el izq es null, deberia ir en el derecho
     }
     else
     {
-      hijo =  node->left;
+      hijo =  node->left; // al contrario
     }
     //
 
@@ -138,7 +138,6 @@ void removeNode(TreeMap * tree, TreeNode* node)
       hijo->parent = NULL; // no existe padre
       return;
     }
-    else{
       // cambio de padre
       hijo->parent = node->parent;
       // se ve en que posicion del padre debe estar
@@ -152,7 +151,6 @@ void removeNode(TreeMap * tree, TreeNode* node)
       }
       return;
     }
-  }
   /////////////////
 }
 
