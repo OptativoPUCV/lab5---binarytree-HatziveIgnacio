@@ -121,11 +121,6 @@ void removeNode(TreeMap * tree, TreeNode* node)
   {
     //
     TreeNode *hijo;
-    if( node == tree->root) // es la raiz
-    {
-      hijo->parent = NULL; // no existe padre
-      tree->root = hijo;
-    }
     
     if(node->left == NULL) // Aux para ver cual debe ser, el izq o derecho
     {
@@ -134,6 +129,11 @@ void removeNode(TreeMap * tree, TreeNode* node)
     else
     {
       hijo =  node->right;
+    }
+    if( node == tree->root) // es la raiz
+    {
+      hijo->parent = NULL; // no existe padre
+      tree->root = hijo;
     }
     // cambio de padre
     hijo->parent = node->parent;
