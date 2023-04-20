@@ -48,8 +48,41 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) //lisgto
 }
 
 
-void insertTreeMap(TreeMap * tree, void* key, void * value) {
+void insertTreeMap(TreeMap * tree, void* key, void * value) 
+{
+  TreeNode *tempNode = tree->root; // primer nodo, raiz
+  TreeNode *nuevoNodo = createTreeNode(key,value);
 
+  while(tempNode != NULL) 
+  { 
+    if(is_equal(tree, key, tempNode->pair->key) ) // la clave ya existe
+    {
+      return;
+    }
+    else if(tree->lower_than(key, tempNode->pair->key) ) 
+    {
+      tempNode = tempNode->left; 
+    }
+    else 
+    {
+      tempNode = tempNode->right;
+    }
+  }
+
+  nuevoNodo->parent = tempNode;
+  if(tempNode == NULL) // arbol vacio
+  {
+    tree->root = nuevoNodo;
+  }
+  else if(tree->lower_than(key, tempNode->pair->key))
+  {
+    tempNode = 
+  }
+  else
+  {
+    
+  }
+  tree->current = nuevoNodo;
 }
 
 TreeNode * minimum(TreeNode * x){
@@ -74,11 +107,11 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 
 
-Pair * searchTreeMap(TreeMap * tree, void* key) 
+Pair * searchTreeMap(TreeMap * tree, void* key) // listo
 {
-  TreeNode *tempNode = tree->root;
+  TreeNode *tempNode = tree->root; // primer nodo, raiz
 
-  while(tempNode != NULL)
+  while(tempNode != NULL) // recorremos el arbol
   { 
     if(is_equal(tree, key, tempNode->pair->key) ) // se compara y si es igual se reemplaza
     {
