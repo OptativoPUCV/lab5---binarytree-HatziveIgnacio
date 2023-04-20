@@ -102,7 +102,7 @@ TreeNode * minimum(TreeNode * x) //listo?
 
 void removeNode(TreeMap * tree, TreeNode* node) 
 {
-  if( node->left == NULL && node->right == NULL) // caso 1, sin hijos
+  if( node->left == NULL && node->right == NULL) // caso 1, sin hijos // listo
   {
     if( node->parent->left == node) // en la izq
     {
@@ -117,7 +117,7 @@ void removeNode(TreeMap * tree, TreeNode* node)
   /////////////////
   
   /////////////////
-  if( node->left == NULL || node->right == NULL) // Caso 2, con un hijo
+  if( node->left == NULL || node->right == NULL) // Caso 2, con un hijo // listo
   {
     //
     TreeNode *hijo;
@@ -139,18 +139,28 @@ void removeNode(TreeMap * tree, TreeNode* node)
       return;
     }
       // cambio de padre
-      hijo->parent = node->parent;
+    hijo->parent = node->parent;
       // se ve en que posicion del padre debe estar
-      if( hijo == node->parent->left)
-      {
-        node->parent->left = hijo;
-      }
-      else
-      {
-        node->parent->right = hijo;
-      }
-      return;
+    if( hijo == node->parent->left)
+    {
+      node->parent->left = hijo;
     }
+    else
+    {
+      node->parent->right = hijo;
+    }
+    return;
+  }
+  /////////////////
+
+  ///////////////// Caso 3
+  
+  TreeNode* minomoDerecho = minimum(node->right);
+  node->pair->key = minomoDerecho->pair->key;
+  node->pair->value = minomoDerecho->pair->value;
+  removeNode(tree, minomoDerecho);
+
+  
   /////////////////
 }
 
