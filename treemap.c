@@ -61,28 +61,38 @@ void insertTreeMap(TreeMap * tree, void* key, void * value)
     }
     else if(tree->lower_than(key, tempNode->pair->key) ) 
     {
-      tempNode = tempNode->left; 
+      if (tempNode->left == NULL) 
+      {
+        tempNode->left = nuevoNodo;
+        nuevoNodo->parent = tempNode;
+        tree->current = nuevoNodo;
+        return;
+      } 
+      else 
+      {
+        tempNode = tempNode->left; 
+      }
     }
     else 
     {
-      tempNode = tempNode->right;
+      if (tempNode->right == NULL) 
+      {
+        tempNode->right = nuevoNodo;
+        nuevoNodo->parent = tempNode;
+        tree->current = nuevoNodo;
+        return;
+      } 
+      else 
+      {
+        tempNode = tempNode->right;
+      }
     }
   }
+}
 
-  nuevoNodo->parent = tempNode;
-  if(tempNode == NULL) // arbol vacio
-  {
-    tree->root = nuevoNodo;
-  }
-  else if(tree->lower_than(key, tempNode->pair->key))
-  {
-    tempNode->left = nuevoNodo;
-  }
-  else
-  {
-    tempNode->right = nuevoNodo;
-  }
-  tree->current = nuevoNodo;
+
+
+
 }
 
 TreeNode * minimum(TreeNode * x){
