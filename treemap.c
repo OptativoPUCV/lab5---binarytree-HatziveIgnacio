@@ -76,11 +76,11 @@ void insertTreeMap(TreeMap * tree, void* key, void * value)
   }
   else if(tree->lower_than(key, tempNode->pair->key))
   {
-    tempNode = 0;
+    tempNode->left = nuevoNodo;
   }
   else
   {
-    
+    tempNode->right = nuevoNodo;
   }
   tree->current = nuevoNodo;
 }
