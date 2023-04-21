@@ -189,14 +189,11 @@ Pair *firstTreeMap(TreeMap *tree) // listo
 Pair *nextTreeMap(TreeMap *tree) {
   if (tree->current->right != NULL) // entro a la rama derecha
   {
-    TreeNode *min_node =
-        minimum(tree->current->right); // busco el minimo de la rama y actualizo
-    tree->current = min_node;
-    return min_node->pair;
-  } else if ((tree->current->left != NULL)) {
-    TreeNode *min_node = minimum(tree->current->left);
-    tree->current = min_node;
-    return min_node->pair;
+    tree->current = tree->current->right;
+    return tree->current->pair;
+  }
+  {
+    
   }
   return NULL;
 }
