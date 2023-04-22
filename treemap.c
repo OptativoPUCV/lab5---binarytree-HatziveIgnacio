@@ -194,7 +194,7 @@ Pair *nextTreeMap(TreeMap *tree) {
   }
   else
   {
-    TreeNode* parent = current->parent;
+    TreeNode* parent = tree->current->parent;
     while (parent != NULL && tree->current == parent->right) { // no tiene subárbol derecho
         tree->current = parent;
         parent = parent->parent;
