@@ -212,18 +212,18 @@ Pair *nextTreeMap(TreeMap *tree)
   
   if (current == NULL) return NULL;
   
-  if (current->right != NULL)
+  if (current->right != NULL) // siguiente en la rama derecha
   {
     current = minimum(current->right);
-  } else 
+  } 
+  else // es el ultimo de la rama derecha, pasamos a la izquierda
   {
-    TreeNode* parent = current->parent;
-    while (parent != NULL && current == parent->right)
+    while (current->parent != NULL && current == current->parent->right) // recorremos
     {
-      current = parent;
-      parent = parent->parent;
+      current = current->parent;
+      current->parent = current->parent->parent;
     }
-    current = parent;
+    current = current->parent;
   }
   tree->current = current;
   
