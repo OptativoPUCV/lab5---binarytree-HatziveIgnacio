@@ -197,8 +197,8 @@ Pair *upperBound(TreeMap *tree, void *key)
     { // si key es igual a la clave del nodo actual, retorna ese par
      return current->pair;      
     }
-    return ub_node->pair;
   }
+  return ub_node->pair;
 }
 
 Pair *firstTreeMap(TreeMap *tree) // listo
