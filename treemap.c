@@ -221,8 +221,8 @@ Pair *nextTreeMap(TreeMap *tree)
     TreeNode* parent = current->parent;
     while (current->parent != NULL && current == current->parent->right) // recorremos
     {
-      current = parent;
-      parent = parent->parent;
+      current =  current->parent;
+       current->parent =  current->parent->parent;
     }
     current = parent;
   }
