@@ -182,21 +182,23 @@ Pair *upperBound(TreeMap *tree, void *key)
   TreeNode* current = tree->root;
   TreeNode* ub_node = NULL;
 
-  while (current != NULL) {
-  if (tree->lower_than(key, current->pair->key) < 0) 
-  { // si key es menor a la clave del nodo actual
-    ub_node = current;
-    current = current->left;
-  }
-  else if (tree->lower_than(key, current->pair->key) > 0) // si key es mayor a la clave del nodo actual
+  while (current != NULL) 
   {
-    current = current->right;
+    if (tree->lower_than(key, current->pair->key) < 0) 
+    { // si key es menor a la clave del nodo actual
+      ub_node = current;
+      current = current->left;
+    }
+    else if (tree->lower_than(key, current->pair->key) > 0) // si key es mayor a la     clave del nodo actual
+    {
+      current = current->right;
+    }
+    else 
+    { // si key es igual a la clave del nodo actual, retorna ese par
+     return current->pair;      
+    }
+    return ub_node->pair;
   }
-  else 
-  { // si key es igual a la clave del nodo actual, retorna ese par
-   return current->pair;      
-  }
-  return ub_node->pair;
 }
 
 Pair *firstTreeMap(TreeMap *tree) // listo
