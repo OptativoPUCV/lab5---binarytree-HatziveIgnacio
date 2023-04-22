@@ -208,24 +208,24 @@ Pair *firstTreeMap(TreeMap *tree) // listo
 
 Pair *nextTreeMap(TreeMap *tree) 
 {
-  if (tree->current->right != NULL) 
-  {
-    tree->current = tree->current->right;
-    while (tree->current->left != NULL) 
-    {
-      tree->current = tree->current->left;
+  TreeNode* current = tree->current;
+    if (current == NULL) {
+        return NULL;
     }
-    return tree->current->pair;
-  } 
-  else 
-  {
-    void* key = tree->current->pair->key;
-    TreeNode* parent = tree->current->parent;
-    while (parent != NULL && tree->lower_than(key, parent->pair->key)) 
-    {
-      parent = parent->parent;
+    if (current->right != NULL) {
+        current = minimum(current->right);
+    } else {
+        TreeNode* parent = current->parent;
+        while (parent != NULL && current == parent->right) {
+            current = parent;
+            parent = parent->parent;
+        }
+        current = parent;
     }
-    tree->current = parent != NULL ? parent : upperBound(tree, key);
-    return tree->current->pair;
-  }
+    tree->current = current;
+    if (current != NULL) {
+        return current->pair;
+    } else {
+        return NULL;
+    }
 }

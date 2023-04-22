@@ -359,3 +359,9 @@ treemap.c:228:45: error: pointer type mismatch in conditional expression [-Werro
 cc1: all warnings being treated as errors
 Compilation failed
 8c7ed3f
+Sat 22 Apr 2023 05:40:27 AM UTC: 
+ treemap.c | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+ tests:  29|0
+total_score: 70/70
+1de8251
