@@ -190,11 +190,21 @@ Pair *nextTreeMap(TreeMap *tree) {
   if (tree->current->right != NULL) // entro a la rama derecha
   {
     tree->current = tree->current->right;
-    return tree->current->pair;
+    return tree->current->pair; 
   }
   else
   {
-    tree->current = tree->current->left;
-    return tree->current->pair;
+    TreeNode* parent = current->parent;
+    while (parent != NULL && tree->current == parent->right) { // no tiene subárbol derecho
+        tree->current = parent;
+        parent = parent->parent;
+    }
+    if (parent == NULL) {
+        tree->current = NULL;
+        return NULL;
+    }
+    tree->current = parent;
+    return parent->pair;
+
   }
 }
