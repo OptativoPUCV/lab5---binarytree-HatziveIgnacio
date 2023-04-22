@@ -182,12 +182,12 @@ Pair *upperBound(TreeMap *tree, void *key)
   TreeNode* current = tree->root;
   TreeNode* ub_node = NULL;
 
-  while (current != NULL) 
+  while (current != NULL) // busqueda
   {
-    if (!tree->lower_than(current->pair->key, key)) 
+    if (!tree->lower_than(current->pair->key, key)) // falso = izq
     {
       ub_node = current;
-       current = current->left;
+      current = current->left;
     } 
     else 
     {
@@ -206,21 +206,26 @@ Pair *firstTreeMap(TreeMap *tree) // listo
   return min->pair;
 }
 
-Pair *nextTreeMap(TreeMap *tree) {
-  if (tree->current->right != NULL) // entro a la rama derecha
+Pair *nextTreeMap(TreeMap *tree) 
+{
+  if (tree->current->right != NULL) 
   {
     tree->current = tree->current->right;
-    return tree->current->pair; 
-  }
+    while (tree->current->left != NULL) 
+    {
+      tree->current = tree->current->left;
+    }
+    return tree->current->pair;
+  } 
+  else 
+  {
+    void* key = tree->current->pair->key;
     TreeNode* parent = tree->current->parent;
-    while (parent != NULL && tree->current == parent->right) { // no tiene subárbol derecho
-        tree->current = parent;
-        parent = parent->parent;
+    while (parent != NULL && tree->lower_than(key, parent->pair->key)) 
+    {
+      parent = parent->parent;
     }
-    if (parent == NULL) {
-        tree->current = NULL;
-        return NULL;
-    }
-    tree->current = parent;
-    return parent->pair;
+    tree->current = parent != NULL ? parent : upperBound(tree, key);
+    return tree->current->pair;
+  }
 }
