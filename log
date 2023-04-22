@@ -280,3 +280,25 @@ test.c:503:5: error: ‘main’ defined but not used [-Werror=unused-function]
 cc1: all warnings being treated as errors
 Compilation failed
 abd0cfd
+Sat 22 Apr 2023 05:28:40 AM UTC: 
+ treemap.c | 1 +
+ 1 file changed, 1 insertion(+)
+In file included from test.c:4:
+treemap.c: In function ‘upperBound’:
+treemap.c:199:10: error: returning ‘TreeNode *’ from a function with incompatible return type ‘Pair *’ [-Werror=incompatible-pointer-types]
+  199 |   return ub_node;
+      |          ^~~~~~~
+test.c:503:5: error: ‘main’ is normally a non-static function [-Werror=main]
+  503 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+test.c:606:1: error: expected declaration or statement at end of input
+  606 | }
+      | ^
+test.c:607: error: control reaches end of non-void function [-Werror=return-type]
+At top level:
+test.c:503:5: error: ‘main’ defined but not used [-Werror=unused-function]
+  503 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+b7147de
