@@ -218,11 +218,11 @@ Pair *nextTreeMap(TreeMap *tree)
   } 
   else // es el ultimo de la rama derecha, pasamos a la izquierda
   {
-    
+    TreeNode* parent = current->parent;
     while ( current->parent != NULL && current ==  current->parent->right)
     {
-      current =  current->parent;
-       current->parent =  current->parent->parent;
+      current = parent;
+      parent = parent->parent;
     }
     current =  current->parent;
   }
