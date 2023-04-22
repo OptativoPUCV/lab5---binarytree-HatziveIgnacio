@@ -180,20 +180,22 @@ Pair *searchTreeMap(TreeMap *tree, void *key) // listo
 Pair *upperBound(TreeMap *tree, void *key) 
 { 
   TreeNode* current = tree->root;
-    TreeNode* ub_node = NULL;
+  TreeNode* ub_node = NULL;
 
-    while (current != NULL) {
-        if (tree->compare(key, current->pair->key) < 0) { // si key es menor a la clave del nodo actual
-            ub_node = current;
-            current = current->left;
-        }
-        else if (tree->compare(key, current->pair->key) > 0) { // si key es mayor a la clave del nodo actual
-            current = current->right;
-        }
-        else { // si key es igual a la clave del nodo actual, retorna ese par
-            return current->pair;
-        }
-    }  
+  while (current != NULL) {
+  if (tree->lower_than(key, current->pair->key) < 0) 
+  { // si key es menor a la clave del nodo actual
+    ub_node = current;
+    current = current->left;
+  }
+  else if (tree->lower_than(key, current->pair->key) > 0) // si key es mayor a la clave del nodo actual
+  {
+    current = current->right;
+  }
+  else 
+  { // si key es igual a la clave del nodo actual, retorna ese par
+   return current->pair;      
+  }  
 }
 
 Pair *firstTreeMap(TreeMap *tree) // listo
